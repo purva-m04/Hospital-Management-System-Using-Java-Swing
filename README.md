@@ -20,7 +20,7 @@ HOSPITALMGTGUI is a hospital management system developed in Java that aims to st
 - Scalability: Enhancing the system to handle larger amounts of data and more complex hospital operations.
 - Improved Error Handling: Adding better validation and feedback mechanisms to improve user experience.
   
-# Usage Instructions
+# Usage Instructions:
 
 1. **Clone the repository**:  
    Start by cloning the repository to your local machine using the following command:https://github.com/purva-m04/Hospital-Management-System-Using-Java-Swing.git
