@@ -23,7 +23,7 @@ HOSPITALMGTGUI is a hospital management system developed in Java that aims to st
 # Usage Instructions
 
 1. **Clone the repository**:  
-   Start by cloning the repository to your local machine using the following command:
+   Start by cloning the repository to your local machine using the following command:https://github.com/purva-m04/Hospital-Management-System-Using-Java-Swing.git
 
 2. **Set up the environment**:  
 Ensure that you have **Java Development Kit (JDK)** installed on your system. The project is built using Java 8 or higher. You can download it from [Oracle's website](https://www.oracle.com/java/technologies/javase-jdk8-downloads.html).
