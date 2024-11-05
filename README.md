@@ -45,4 +45,14 @@ After successful compilation, run the main class (`HOSPITALMGTGUI`) using the fo
 
 6. **Future Updates**:  
 Currently, data persistence is not implemented, but future versions will include a database to store data permanently.
+
+# Instructions to Run the Code
+
+1. Save the file as `HOSPITALMGTGUI.java` using Notepad (or any text editor).
+2. Open the Command Prompt (CMD).
+3. Navigate to the directory where you saved the `HOSPITALMGTGUI.java` file using the `cd` command.
+4. Compile the code using the following command:
+   javac HOSPITALMGTGUI.java
+   java HOSPITALMGTGUI
+5. Run the Code
    
