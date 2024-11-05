@@ -20,3 +20,29 @@ HOSPITALMGTGUI is a hospital management system developed in Java that aims to st
 - Scalability: Enhancing the system to handle larger amounts of data and more complex hospital operations.
 - Improved Error Handling: Adding better validation and feedback mechanisms to improve user experience.
   
+# Usage Instructions
+
+1. **Clone the repository**:  
+   Start by cloning the repository to your local machine using the following command:
+
+2. **Set up the environment**:  
+Ensure that you have **Java Development Kit (JDK)** installed on your system. The project is built using Java 8 or higher. You can download it from [Oracle's website](https://www.oracle.com/java/technologies/javase-jdk8-downloads.html).
+
+3. **Compile the project**:  
+Open a terminal or command prompt and navigate to the project directory. Then, compile the Java files using the following command:
+
+
+4. **Run the application**:  
+After successful compilation, run the main class (`HOSPITALMGTGUI`) using the following command:
+
+
+5. **Interacting with the application**:  
+- Once the application is launched, the main menu will appear, displaying different sections such as **Doctor**, **Patient**, **Billing**, etc.
+- Click on any button to open the corresponding section.
+- In each section, you can **add**, **edit**, or **delete** entries using the buttons provided.
+- Use the **search bar** to filter data in each section.
+- Data is temporarily stored in memory for the current session, so the changes will be lost when the application is closed.
+
+6. **Future Updates**:  
+Currently, data persistence is not implemented, but future versions will include a database to store data permanently.
+   
