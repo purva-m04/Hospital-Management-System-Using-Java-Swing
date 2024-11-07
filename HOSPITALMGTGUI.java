@@ -6,6 +6,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 
+class IsCorrect extends Exception {
+    IsCorrect(String msg) {
+        super(msg);
+    }
+
+    @Override
+    public String toString() {
+        return getMessage();
+    }
+}
+
+
 public class HOSPITALMGTGUI extends JFrame 
 {
     private DefaultTableModel doctorTableModel;
@@ -28,32 +40,32 @@ public class HOSPITALMGTGUI extends JFrame
 
         // Initialize data models with dummy data
         doctorTableModel = new DefaultTableModel(new String[]{"ID", "Name", "Specialist", "Work Time", "Qualification", "Room"}, 0);
-        doctorTableModel.addRow(new String[]{"D1", "Dr. Purva", "Cardiologist", "9-5", "MBBS,MD", "101"});
-        doctorTableModel.addRow(new String[]{"D2", "Dr. Brown", "Neurologist", "9-3", "MBBS,PhD", "102"});
-        doctorTableModel.addRow(new String[]{"D3", "Dr. Lee", "Pediatrician", "10-4", "MBBS,MD", "103"});
-        doctorTableModel.addRow(new String[]{"D4", "Dr. Patel", "Dermatologist", "9-5", "MBBS", "104"});
-        doctorTableModel.addRow(new String[]{"D5", "Dr. Jones", "Surgeon", "8-6", "MBBS,MS", "105"});
+        doctorTableModel.addRow(new String[]{"D1", "DR. PURVA", "CARDIOLOGIST", "9-5", "MBBS,MD", "101"});
+        doctorTableModel.addRow(new String[]{"D2", "DR. BROWN", "NEUROLOGIST", "9-3", "MBBS,PHD", "102"});
+        doctorTableModel.addRow(new String[]{"D3", "DR. LEE", "PEDIATRICIAN", "10-4", "MBBS,MD", "103"});
+        doctorTableModel.addRow(new String[]{"D4", "DR. PATEL", "DERMATOLOGIST", "9-5", "MBBS", "104"});
+        doctorTableModel.addRow(new String[]{"D5", "DR. JONES", "SURGEON", "8-6", "MBBS,MS", "105"});
 
         patientTableModel = new DefaultTableModel(new String[]{"ID", "Name", "Disease", "Sex", "Admit Status", "Age"}, 0);
-        patientTableModel.addRow(new String[]{"P1", "John Doe", "Flu", "M", "Admitted", "34"});
-        patientTableModel.addRow(new String[]{"P2", "Jane Doe", "Fever", "F", "Discharged", "29"});
-        patientTableModel.addRow(new String[]{"P3", "Michael Brown", "Headache", "M", "Admitted", "45"});
-        patientTableModel.addRow(new String[]{"P4", "Emily White", "Cold", "F", "Discharged", "22"});
-        patientTableModel.addRow(new String[]{"P5", "Chris Green", "Cough", "M", "Admitted", "60"});
+        patientTableModel.addRow(new String[]{"P1", "JOHN DOE", "FLU", "M", "ADMITTED", "34"});
+        patientTableModel.addRow(new String[]{"P2", "JANE WATSON", "FEVER", "F", "DISCHARGED", "29"});
+        patientTableModel.addRow(new String[]{"P3", "MICHAEL MYERS", "HEADACHE", "M", "ADMITTED", "45"});
+        patientTableModel.addRow(new String[]{"P4", "EMILY STONE", "COLD", "F", "DISCHARGED", "22"});
+        patientTableModel.addRow(new String[]{"P5", "CHRIS GREEN", "COUGH", "M", "ADMITTED", "60"});
 
         inventoryTableModel = new DefaultTableModel(new String[]{"ID", "Name", "Type", "Quantity", "Price"}, 0);
-        inventoryTableModel.addRow(new String[]{"M1", "Paracetamol", "Tablet", "100", "5"});
-        inventoryTableModel.addRow(new String[]{"M2", "Aspirin", "Tablet", "50", "3"});
-        inventoryTableModel.addRow(new String[]{"M3", "Amoxicillin", "Capsule", "80", "10"});
-        inventoryTableModel.addRow(new String[]{"M4", "Ibuprofen", "Tablet", "150", "6"});
-        inventoryTableModel.addRow(new String[]{"M5", "Lisinopril", "Tablet", "200", "8"});
+        inventoryTableModel.addRow(new String[]{"M1", "PARACETAMOL", "TABLET", "100", "5"});
+        inventoryTableModel.addRow(new String[]{"M2", "ASPIRIN", "TABLET", "50", "3"});
+        inventoryTableModel.addRow(new String[]{"M3", "AMOXICILLIN", "CAPSULE", "80", "10"});
+        inventoryTableModel.addRow(new String[]{"M4", "IBUPROFEN", "TABLET", "150", "6"});
+        inventoryTableModel.addRow(new String[]{"M5", "LISINOPRIL", "TABLET", "200", "8"});
 
         labTableModel = new DefaultTableModel(new String[]{"ID", "Test Name", "Cost", "Available"}, 0);
-        labTableModel.addRow(new String[]{"L1", "Blood Test", "200", "Yes"});
-        labTableModel.addRow(new String[]{"L2", "X-Ray", "500", "No"});
-        labTableModel.addRow(new String[]{"L3", "MRI", "1500", "Yes"});
-        labTableModel.addRow(new String[]{"L4", "CT Scan", "1200", "Yes"});
-        labTableModel.addRow(new String[]{"L5", "Ultrasound", "800", "Yes"});
+        labTableModel.addRow(new String[]{"L1", "BLOOD TEST", "200", "YES"});
+        labTableModel.addRow(new String[]{"L2", "X-RAY", "500", "NO"});
+        labTableModel.addRow(new String[]{"L3", "MRI", "1500", "YES"});
+        labTableModel.addRow(new String[]{"L4", "CT SCAN", "1200", "YES"});
+        labTableModel.addRow(new String[]{"L5", "ULTRASOUND", "800", "YES"});
 
         labOrdersTableModel = new DefaultTableModel(new String[]{"Order ID", "Patient ID", "Test ID", "Order Date"}, 0);
         labOrdersTableModel.addRow(new String[]{"O1", "P1", "L1", "05-11-2024"});
@@ -63,18 +75,18 @@ public class HOSPITALMGTGUI extends JFrame
         labOrdersTableModel.addRow(new String[]{"O5", "P5", "L5", "09-11-2024"});
 
         facilityTableModel = new DefaultTableModel(new String[]{"ID", "Facility Name", "Details"}, 0);
-        facilityTableModel.addRow(new String[]{"F1", "ICU", "Intensive Care Unit"});
-        facilityTableModel.addRow(new String[]{"F2", "ER", "Emergency Room"});
-        facilityTableModel.addRow(new String[]{"F3", "Radiology", "Radiology Services"});
-        facilityTableModel.addRow(new String[]{"F4", "Pharmacy", "Medicine Dispensing"});
-        facilityTableModel.addRow(new String[]{"F5", "Surgery", "Operation Theatre"});
+        facilityTableModel.addRow(new String[]{"F1", "ICU", "INTENSIVE CARE UNIT"});
+        facilityTableModel.addRow(new String[]{"F2", "ER", "EMERGENCY ROOM"});
+        facilityTableModel.addRow(new String[]{"F3", "RADIOLOGY", "RADIOLOGY SERVICES"});
+        facilityTableModel.addRow(new String[]{"F4", "PHARMACY", "MEDICINE DISPENSING"});
+        facilityTableModel.addRow(new String[]{"F5", "SURGERY", "OPERATION THEATRE"});
 
         staffTableModel = new DefaultTableModel(new String[]{"ID", "Name", "Position", "Salary"}, 0);
-        staffTableModel.addRow(new String[]{"S1", "Alice", "Nurse", "5000"});
-        staffTableModel.addRow(new String[]{"S2", "Bob", "Receptionist", "3000"});
-	    staffTableModel.addRow(new String[]{"S3", "Charlie", "Administrator", "4000"});
-        staffTableModel.addRow(new String[]{"S4", "Diana", "Pharmacist", "5200"});
-        staffTableModel.addRow(new String[]{"S5", "Edward", "Lab Technician", "2500"});
+        staffTableModel.addRow(new String[]{"S1", "AISHWARYA", "NURSE", "5000"});
+        staffTableModel.addRow(new String[]{"S2", "HITEN", "RECEPTIONIST", "3000"});
+	    staffTableModel.addRow(new String[]{"S3", "JOHN", "ADMINISTRATOR", "4000"});
+        staffTableModel.addRow(new String[]{"S4", "ARUN", "PHARMACIST", "5200"});
+        staffTableModel.addRow(new String[]{"S5", "PRASAD", "LAB TECHNICIAN", "2500"});
 
         appointmentsTableModel = new DefaultTableModel(new String[]{"Patient ID", "Doctor ID", "Appointment Date", "Appointment Time"}, 0);
         appointmentsTableModel.addRow(new String[]{"P1", "D1", "05-11-2024", "02:30 PM"});
@@ -84,25 +96,25 @@ public class HOSPITALMGTGUI extends JFrame
         appointmentsTableModel.addRow(new String[]{"P5", "D5", "09-11-2024", "03:00 PM"});
 
         opdTableModel = new DefaultTableModel(new String[]{"Patient ID", "Doctor ID", "Visit Date", "Status"}, 0);
-        opdTableModel.addRow(new String[]{"P1", "D1", "01-11-2024", "Completed"});
-        opdTableModel.addRow(new String[]{"P2", "D2", "02-11-2024", "Completed"});
-        opdTableModel.addRow(new String[]{"P3", "D3", "03-11-2024", "In Progress"});
-        opdTableModel.addRow(new String[]{"P4", "D4", "04-11-2024", "Pending"});
-        opdTableModel.addRow(new String[]{"P5", "D5", "05-11-2024", "Completed"});
+        opdTableModel.addRow(new String[]{"P1", "D1", "01-11-2024", "COMPLETED"});
+        opdTableModel.addRow(new String[]{"P2", "D2", "02-11-2024", "COMPLETED"});
+        opdTableModel.addRow(new String[]{"P3", "D3", "03-11-2024", "IN PROGRESS"});
+        opdTableModel.addRow(new String[]{"P4", "D4", "04-11-2024", "PENDING"});
+        opdTableModel.addRow(new String[]{"P5", "D5", "05-11-2024", "COMPLETED"});
 
         ipdTableModel = new DefaultTableModel(new String[]{"Patient ID", "Doctor ID", "Admit Date", "Room", "Status"}, 0);
-        ipdTableModel.addRow(new String[]{"P1", "D1", "01-11-2024", "101", "Admitted"});
-        ipdTableModel.addRow(new String[]{"P2", "D2", "02-11-2024", "102", "Discharged"});
-        ipdTableModel.addRow(new String[]{"P3", "D3", "03-11-2024", "103", "Admitted"});
-        ipdTableModel.addRow(new String[]{"P4", "D4", "04-11-2024", "104", "Pending"});
-        ipdTableModel.addRow(new String[]{"P5", "D5", "05-11-2024", "105", "Admitted"});
+        ipdTableModel.addRow(new String[]{"P1", "D1", "01-11-2024", "101", "ADMITTED"});
+        ipdTableModel.addRow(new String[]{"P2", "D2", "02-11-2024", "102", "DISCHARGED"});
+        ipdTableModel.addRow(new String[]{"P3", "D3", "03-11-2024", "103", "ADMITTED"});
+        ipdTableModel.addRow(new String[]{"P4", "D4", "04-11-2024", "104", "PENDING"});
+        ipdTableModel.addRow(new String[]{"P5", "D5", "05-11-2024", "105", "ADMITTED"});
 
         billingTableModel = new DefaultTableModel(new String[]{"Bill ID", "Patient ID", "Total Amount", "Payment Status"}, 0);
-        billingTableModel.addRow(new String[]{"B1", "P1", "250", "Paid"});
-        billingTableModel.addRow(new String[]{"B2", "P2", "500", "Unpaid"});
-        billingTableModel.addRow(new String[]{"B3", "P3", "1000", "Paid"});
-        billingTableModel.addRow(new String[]{"B4", "P4", "750", "Unpaid"});
-        billingTableModel.addRow(new String[]{"B5", "P5", "300", "Paid"});
+        billingTableModel.addRow(new String[]{"B1", "P1", "250", "PAID"});
+        billingTableModel.addRow(new String[]{"B2", "P2", "500", "UNPAID"});
+        billingTableModel.addRow(new String[]{"B3", "P3", "1000", "PAID"});
+        billingTableModel.addRow(new String[]{"B4", "P4", "750", "UNPAID"});
+        billingTableModel.addRow(new String[]{"B5", "P5", "300", "PAID"});
 
 
         // Main menu panel with colorful design
@@ -272,11 +284,24 @@ public class HOSPITALMGTGUI extends JFrame
         });
         returnButton.addActionListener(e -> sectionFrame.dispose());
     }
+	private boolean isText(String input) {
+  
+    if (input != null && input.matches("[a-zA-Z]+")) {
+        return true;  
+    } else {
+        return false; 
+    }
+}
 
-    private void addEditOrDeleteEntry(String title, DefaultTableModel model, String[] columns, Integer rowIndex) 
+
+private void addEditOrDeleteEntry(String title, DefaultTableModel model, String[] columns, Integer rowIndex) 
+{
+    boolean inputValid;
+    do 
     {
         JPanel inputPanel = new JPanel(new GridLayout(columns.length, 2, 5, 5));
         JTextField[] fields = new JTextField[columns.length];
+        inputValid = true;
 
         String[] originalValues = new String[columns.length];
         if (rowIndex != null) 
@@ -306,55 +331,77 @@ public class HOSPITALMGTGUI extends JFrame
         int result = JOptionPane.showConfirmDialog(null, inputPanel, "Add/Edit Entry", JOptionPane.OK_CANCEL_OPTION);
         if (result == JOptionPane.OK_OPTION) 
         {
-            boolean emptyField = false;
-            for (JTextField field : fields) 
+            try 
             {
-                if (field.getText().trim().isEmpty()) 
+                for (int i = 0; i < columns.length; i++) 
                 {
-                    emptyField = true;
-                    break;
-                }
-            }
-
-            if (emptyField) 
-            {
-                JOptionPane.showMessageDialog(null, "Please fill in all fields.", "Error", JOptionPane.ERROR_MESSAGE);
-            } 
-            else 
-            {
-                String[] newRow = new String[fields.length];
-                boolean isModified = false;
-
-                // Check if any field is modified
-                for (int i = 0; i < fields.length; i++) 
-                {
-                    newRow[i] = fields[i].getText();
-                    if (rowIndex == null || !newRow[i].equals(originalValues[i])) 
+                    String value = fields[i].getText().trim();
+                    if (value.isEmpty()) 
                     {
-                        isModified = true;
+                        inputValid = false;
+                        JOptionPane.showMessageDialog(null, "Field " + columns[i] + " cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
+                        break;
                     }
-                }
 
-                // If it's a new entry or any field was modified, update the table
-                if (isModified) 
-                {
-                    if (rowIndex != null) 
+                    if (i == 0) 
                     {
-                        // Update existing row
-                        for (int i = 0; i < fields.length; i++) 
-                        {
-                            model.setValueAt(newRow[i], rowIndex, i);
-                        }
+                        value = value.toUpperCase();
+                    }
+
+                    if (i == 1 && !isText(value)) 
+                    {
+                        throw new IsCorrect("Name has to contain only letters.");
                     } 
                     else 
                     {
-                        // Add new row
-                        model.addRow(newRow);
+                        value = value.toUpperCase();
                     }
+
+
+                    if (rowIndex != null && !value.equals(originalValues[i])) 
+                    {
+
+                        inputValid = true;
+                    }
+
+                    fields[i].setText(value);
                 }
-       	    }
+
+            } 
+            catch (IsCorrect e) 
+            {
+                JOptionPane.showMessageDialog(null, e.toString());
+                inputValid = false;
+            }
+            
+            if (inputValid) 
+            {
+
+                if (rowIndex != null) 
+                {
+
+                    for (int i = 0; i < columns.length; i++) 
+                    {
+                        model.setValueAt(fields[i].getText(), rowIndex, i);
+                    }
+                } 
+                else 
+                {
+
+                    model.addRow(Arrays.stream(fields).map(JTextField::getText).toArray());
+                }
+            }
         }
-    }
+        else 
+        {
+
+            break;
+        }
+
+    } while (!inputValid);
+}
+
+
     public static void main(String[] args) 
     {
         SwingUtilities.invokeLater(HOSPITALMGTGUI::new);
